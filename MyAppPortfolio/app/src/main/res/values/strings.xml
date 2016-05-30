@@ -7,4 +7,7 @@
     <string name="button4">Make Your App Material</string>
     <string name="button5">Go Ubiquitous</string>
     <string name="button6">Capstone</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
