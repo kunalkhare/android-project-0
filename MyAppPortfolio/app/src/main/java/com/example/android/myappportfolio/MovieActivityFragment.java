@@ -1,25 +1,12 @@
 package com.example.android.myappportfolio;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.GridView;
-
-import com.example.android.domain.ImageAdapter;
-import com.example.android.domain.PopularMovie;
-import com.example.android.service.MovieService;
-
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -33,29 +20,14 @@ import java.util.List;
 public class MovieActivityFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private final String LOG_TAG = MovieActivityFragment.class.getSimpleName();
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private final String POSTER_URL = "http://image.tmdb.org/t/p/w185";
-    private final String POSTER_SIZE = "w185";//  "w92", "w154", "w185", "w342", "w500", "w780", or "original"
-    private final String MOVIEDB_KEY="f9674990e0f2f54b901c6a6b290731f5";
-
 
     private OnFragmentInteractionListener mListener;
-
-    public static ArrayAdapter<PopularMovie> getMovieAdapter() {
-        return movieAdapter;
-    }
-
-    public static void setMovieAdapter(ArrayAdapter<PopularMovie> movieAdapter) {
-        MovieActivityFragment.movieAdapter = movieAdapter;
-    }
-
-    private static ArrayAdapter<PopularMovie> movieAdapter;
 
     public MovieActivityFragment() {
         // Required empty public constructor
@@ -86,26 +58,13 @@ public class MovieActivityFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-/*        MovieService service = new MovieService();
-        service.execute("popular");*/
-        View rootView = inflater.inflate(R.layout.fragment_movie_activity, container,false);
-
-        Intent intent = getActivity().getIntent();
-        movieAdapter = new ArrayAdapter<PopularMovie>(getActivity(),R.layout.fragment_movie_activity,
-                R.id.gridView,new ArrayList<PopularMovie>());
-        if(intent!=null)
-        {
-           // rootView.findViewById(R.id.button);
-        }
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_movie_activity, container, false);
-        return rootView;
+        return inflater.inflate(R.layout.fragment_movie_activity, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -114,7 +73,7 @@ public class MovieActivityFragment extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
-/*
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -130,7 +89,7 @@ public class MovieActivityFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }*/
+    }
 
     /**
      * This interface must be implemented by activities that contain this

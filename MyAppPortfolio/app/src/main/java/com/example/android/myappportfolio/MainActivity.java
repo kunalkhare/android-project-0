@@ -3,13 +3,10 @@ package com.example.android.myappportfolio;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewAnimationUtils;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.android.service.MovieService;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,8 +14,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_main_activity);
-/*        MovieService service = new MovieService();
-        service.execute("popular");*/
     }
 
     public void clickGoUbt(View view) {

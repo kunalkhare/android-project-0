@@ -1,39 +1,39 @@
 package com.example.android.myappportfolio;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.GridView;
-import android.widget.ImageView;
+import android.widget.ProgressBar;
 
+import com.example.android.com.example.service.MovieService;
 import com.example.android.domain.ImageAdapter;
-import com.example.android.service.MovieService;
-
-import java.util.List;
+import java.util.ArrayList;
 
 public class MovieActivity extends AppCompatActivity {
 
-/*    public static MovieActivity movieActivity = new MovieActivity();
-    public static GridView gridView ;
-    public static ImageAdapter imageAdapter;*/
+    private ArrayList<String> mGridData;
+    private GridView mGridView;
+    public  static ProgressBar mProgressBar;
+    public  static ImageAdapter imageAdapter;
+    public static Context movieActivityContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.movie_container, new MovieActivityFragment())
-                    .commit();
-        }
+        mGridView = (GridView) findViewById(R.id.gridViewActivity);
+        mProgressBar =(ProgressBar) findViewById(R.id.movie_progress_bar);
+
+        mGridData = new ArrayList<>();
+        imageAdapter = new ImageAdapter(this, R.layout.fragment_movie_activity, mGridData);
+        movieActivityContext = this;
+        mGridView.setAdapter(imageAdapter);
 
         MovieService service = new MovieService();
         service.execute("popular");
-/*        gridView = (GridView) findViewById(R.id.gridView);
-        String[] test = {};
-        imageAdapter = new ImageAdapter(this,test);*/
-        GridView gridView = (GridView) findViewById(R.id.gridView);
-        gridView.setAdapter(new ImageAdapter(this,MovieService.getPosterUrls().toArray(new String[MovieService.getPosterUrls().size()])));
+        mProgressBar.setVisibility(View.VISIBLE);
 
-       // ImageView imageView = (ImageView) findViewById(R.id.gridView);
     }
 }

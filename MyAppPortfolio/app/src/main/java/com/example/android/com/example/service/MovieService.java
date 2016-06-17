@@ -1,17 +1,12 @@
-package com.example.android.service;
+package com.example.android.com.example.service;
 
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.GridView;
+import android.view.View;
 
-import com.example.android.domain.ImageAdapter;
 import com.example.android.domain.PopularMovie;
-import com.example.android.myappportfolio.MainActivityFragment;
 import com.example.android.myappportfolio.MovieActivity;
-import com.example.android.myappportfolio.MovieActivityFragment;
-import com.example.android.myappportfolio.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,8 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Kunal on 5/30/2016.
+ * Created by Kunal on 6/17/2016.
  */
+
 public class MovieService extends AsyncTask<String, Void, List<PopularMovie>> {
 
     private final String LOG_TAG = MovieService.class.getSimpleName();
@@ -38,15 +34,7 @@ public class MovieService extends AsyncTask<String, Void, List<PopularMovie>> {
     private HttpURLConnection urlConn = null;
     private BufferedReader reader = null;
 
-    public static List<String> getPosterUrls() {
-        return posterUrls;
-    }
-
-    public static void setPosterUrls(List<String> posterUrls) {
-        MovieService.posterUrls = posterUrls;
-    }
-
-    public static List<String> posterUrls = new ArrayList<String>();
+    public List<String> posterUrls = new ArrayList<String>();
     private final String POSTER_URL = "http://image.tmdb.org/t/p/w185";
 
 
@@ -91,16 +79,13 @@ public class MovieService extends AsyncTask<String, Void, List<PopularMovie>> {
 
     @Override
     protected void onPostExecute(List<PopularMovie> popularMovies) {
-        MovieActivityFragment fragment = new MovieActivityFragment();
         String posterPath;
         List<String> posterUrls = new ArrayList<String>();
+
         if(popularMovies!=null)
         {
-            fragment.getMovieAdapter().clear();
             for(PopularMovie movie:popularMovies){
                 Log.v(LOG_TAG, "ADDING MOVIE######: " +movie.getTitle());
-                fragment.getMovieAdapter().add(movie);
-                //url code
                 posterPath = movie.getPosterUrl();
                 Uri buildUrl = Uri.withAppendedPath(Uri.parse(POSTER_URL),posterPath);
                 Log.v(LOG_TAG, "POSTER_URL ### "+buildUrl.toString() );
@@ -108,14 +93,11 @@ public class MovieService extends AsyncTask<String, Void, List<PopularMovie>> {
             }
 
         }
-        setPosterUrls(posterUrls);
-/*        MovieActivity mv= new MovieActivity();
-        GridView gridView =mv.movieActivity.gridView;
-        mv.movieActivity.imageAdapter.setImageUrls(getPosterUrls().toArray(new String[getPosterUrls().size()]));
-        //mv.movieActivity.imageAdapter.setmContext(mv.movieActivity.getApplicationContext());
-        gridView.setAdapter(new ImageAdapter(mv.this,mv.movieActivity.imageAdapter.getImageUrls()));*/
 
-        //super.onPostExecute(popularMovies);
+        //Hide progressbar
+        MovieActivity movieActivity = new MovieActivity();
+        movieActivity.imageAdapter.setGridData(posterUrls);
+        movieActivity.mProgressBar.setVisibility(View.GONE);
     }
 
     private List<PopularMovie> getMovieDetailFromJson(String movieDbJsonString){
