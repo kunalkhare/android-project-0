@@ -25,6 +25,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+        <activity
+            android:name=".MovieMenuSettings"
+            android:label="@string/sort_main"
+            android:parentActivityName=".MovieActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MovieActivity" />
+        </activity>
     </application>
 
 </manifest>

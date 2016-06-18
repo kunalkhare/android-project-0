@@ -1,4 +1,4 @@
-package com.example.android.com.example.service;
+package com.example.android.service;
 
 import android.net.Uri;
 import android.os.AsyncTask;
