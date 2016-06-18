@@ -26,7 +26,7 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".MovieMenuSettings"
+            android:name="com.example.android.menu.MovieMenuSettingsActivity"
             android:label="@string/sort_main"
             android:parentActivityName=".MovieActivity">
             <meta-data
