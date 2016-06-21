@@ -1,0 +1,51 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.myappportfolio.MovieDetailActivityFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/movie_detail_title"
+        android:layout_gravity="center_horizontal|top"
+        android:background="#17f0e9"
+        android:textColor="#070606"
+        />
+
+    <ImageView
+        android:layout_width="176dp"
+        android:layout_height="235dp"
+        android:layout_below="@+id/movie_detail_title"
+        android:id="@+id/image_detail"
+        android:layout_gravity="left|center_vertical" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="61dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/movie_detail_year"
+        android:layout_gravity="right|center_vertical" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/movie_detail_vote"
+        android:layout_below="@+id/movie_detail_year"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="right|center_vertical" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="133dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_below="@+id/image_detail"
+        android:id="@+id/movie_detail_plot"
+        android:layout_gravity="left|bottom" />
+
+
+</FrameLayout>

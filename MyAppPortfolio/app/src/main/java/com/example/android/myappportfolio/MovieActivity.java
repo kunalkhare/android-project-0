@@ -3,15 +3,20 @@ package com.example.android.myappportfolio;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.example.android.domain.PopularMovie;
 import com.example.android.menu.MovieMenuSettingsActivity;
 import com.example.android.service.MovieService;
 import com.example.android.domain.ImageAdapter;
@@ -19,11 +24,12 @@ import java.util.ArrayList;
 
 public class MovieActivity extends AppCompatActivity {
 
-    private ArrayList<String> mGridData;
+    private ArrayList<PopularMovie> mGridData;
     private GridView mGridView;
     public  static ProgressBar mProgressBar;
     public  static ImageAdapter imageAdapter;
     public static Context movieActivityContext;
+    private final String LOG_TAG = MovieActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,22 @@ public class MovieActivity extends AppCompatActivity {
         imageAdapter = new ImageAdapter(this, R.layout.fragment_movie_activity, mGridData);
         movieActivityContext = this;
         mGridView.setAdapter(imageAdapter);
+
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.v(LOG_TAG, " position : " + position);
+                Log.v(LOG_TAG, " id : " + id);
+                PopularMovie movieItemSelected = imageAdapter.getItem(position);
+                Log.v(LOG_TAG, " movieItemSelected : " + movieItemSelected.getTitle());
+                Intent intent = new Intent(getApplicationContext(),MovieDetailActivity.class)
+                        .putExtra("PopularMovie",  movieItemSelected);
+                startActivity(intent);
+                //Toast.makeText( getApplicationContext(), movieItemSelected.getPlotSynopsis(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
     }
 

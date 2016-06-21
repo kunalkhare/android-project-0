@@ -26,6 +26,14 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
+            android:name=".MovieDetailActivity"
+            android:label="Movie Detail"
+            android:parentActivityName=".MovieActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MovieActivity" />
+        </activity>
+        <activity
             android:name="com.example.android.menu.MovieMenuSettingsActivity"
             android:label="@string/sort_main"
             android:parentActivityName=".MovieActivity">
@@ -33,6 +41,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MovieActivity" />
         </activity>
+
     </application>
 
 </manifest>

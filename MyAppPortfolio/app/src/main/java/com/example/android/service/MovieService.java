@@ -89,6 +89,7 @@ public class MovieService extends AsyncTask<String, Void, List<PopularMovie>> {
                 posterPath = movie.getPosterUrl();
                 Uri buildUrl = Uri.withAppendedPath(Uri.parse(POSTER_URL),posterPath);
                 Log.v(LOG_TAG, "POSTER_URL ### "+buildUrl.toString() );
+                movie.setPosterUrl(buildUrl.toString());
                 posterUrls.add(buildUrl.toString());
             }
 
@@ -96,7 +97,7 @@ public class MovieService extends AsyncTask<String, Void, List<PopularMovie>> {
 
         //Hide progressbar
         MovieActivity movieActivity = new MovieActivity();
-        movieActivity.imageAdapter.setGridData(posterUrls);
+        movieActivity.imageAdapter.setGridData(posterUrls,popularMovies);
         movieActivity.mProgressBar.setVisibility(View.GONE);
     }
 

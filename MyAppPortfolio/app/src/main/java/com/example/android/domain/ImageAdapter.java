@@ -19,15 +19,15 @@ import java.util.List;
 /**
  * Created by Kunal on 5/30/2016.
  */
-public class ImageAdapter extends ArrayAdapter<String>{
+public class ImageAdapter extends ArrayAdapter<PopularMovie>{
 
     private Context mContext;
     private int layoutResourceId;
-    private List<String> gridData = new ArrayList<String>();
+    private static List<PopularMovie> gridData = new ArrayList<PopularMovie>();
     private static String[] imageUrls;
     private final String LOG_TAG = ImageAdapter.class.getSimpleName();
 
-    public ImageAdapter(Context context, int resource, List<String> gridData) {
+    public ImageAdapter(Context context, int resource, List<PopularMovie> gridData) {
         super(context, resource, gridData);
         this.mContext = context;
         this.layoutResourceId = resource;
@@ -35,9 +35,9 @@ public class ImageAdapter extends ArrayAdapter<String>{
 
     }
 
-    public void setGridData(List<String> gridData){
-        this.gridData = gridData;
-        this.imageUrls = gridData.toArray(new String[0]);
+    public void setGridData(List<String> gridData,List<PopularMovie> moviesDetailList){
+        this.gridData = moviesDetailList;
+        this.imageUrls = gridData.toArray(new String[gridData.size()]);
         this.notifyDataSetChanged();
     }
 
@@ -54,6 +54,20 @@ public class ImageAdapter extends ArrayAdapter<String>{
     public int getCount() {
         return gridData.size();
     }
+
+    @Override
+    public PopularMovie getItem(int position) {
+        Log.v(LOG_TAG, " gridData SIZE : " + this.gridData.size());
+        PopularMovie mv = this.gridData.get(position);
+        return mv;
+    }
+
+/*    @Override
+    public int getPosition(String item) {
+        return super.getPosition(item);
+    }*/
+
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -85,7 +99,7 @@ public class ImageAdapter extends ArrayAdapter<String>{
         Log.v(LOG_TAG, " ImageView : " + holder.imageView);
 
         Picasso.with(mContext)
-                    .load(gridData.get(position)).into(holder.imageView);
+                    .load(gridData.get(position).getPosterUrl()).into(holder.imageView);
 
         return vw;
     }
@@ -93,4 +107,6 @@ public class ImageAdapter extends ArrayAdapter<String>{
     static class ViewHolder {
         ImageView imageView;
     }
+
+
 }

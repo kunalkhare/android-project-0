@@ -1,9 +1,11 @@
 package com.example.android.domain;
 
+import java.io.Serializable;
+
 /**
  * Created by Kunal on 5/30/2016.
  */
-public class PopularMovie {
+public class PopularMovie implements Serializable {
     String title;
     String posterUrl;
     String plotSynopsis;
