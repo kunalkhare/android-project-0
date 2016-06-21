@@ -27,7 +27,7 @@ import java.util.List;
 public class MovieService extends AsyncTask<String, Void, List<PopularMovie>> {
 
     private final String LOG_TAG = MovieService.class.getSimpleName();
-    private final String MOVIEDB_KEY="f9674990e0f2f54b901c6a6b290731f5";
+    private final String MOVIEDB_KEY="USE_YOUR_OWN_KEY";
     private final String temp_url ="http://api.themoviedb.org/3/movie/popular?api_key=f9674990e0f2f54b901c6a6b290731f5";
     private final String MOVIE_URL ="http://api.themoviedb.org/3/movie";
     private final String KEY_PARAM ="api_key";
